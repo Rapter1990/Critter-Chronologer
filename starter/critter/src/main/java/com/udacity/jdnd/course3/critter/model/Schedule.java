@@ -27,7 +27,7 @@ public class Schedule implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "SCHEDULE_EMPLOYEE", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+            inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
     private List<Employee> employees;
 
     @ManyToMany(cascade = CascadeType.ALL)
