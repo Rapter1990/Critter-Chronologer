@@ -25,12 +25,12 @@ public class Schedule implements Serializable {
     @Column(name="SCHEDULE_DATE")
     private LocalDate date;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "SCHEDULE_EMPLOYEE", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
             inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
     private List<Employee> employees;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "SCHEDULE_PET", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
             inverseJoinColumns = @JoinColumn(name = "PET_ID"))
     private List<Pet> pets;
