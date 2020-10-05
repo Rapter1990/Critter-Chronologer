@@ -28,7 +28,7 @@ public class Pet implements Serializable {
     @Column(name = "NOTES", length = 500)
     private String notes;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name="BIRTH_DATE")
     private LocalDate birthDate;
 

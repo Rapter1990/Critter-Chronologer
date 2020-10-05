@@ -22,7 +22,7 @@ public class Schedule implements Serializable {
     @Column(name = "ACTIVITIES", length = 500)
     private List<EmployeeSkill> activities;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name="SCHEDULE_DATE")
     private LocalDate date;
 
