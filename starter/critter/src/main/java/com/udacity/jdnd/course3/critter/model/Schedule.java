@@ -28,13 +28,8 @@ public class Schedule implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "SCHEDULE_EMPLOYEE", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private List<Employee> employees;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "SCHEDULE_CUSTOMER", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CUSTOMER_ID"))
-    private List<Customer> owners;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "SCHEDULE_PET", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
@@ -45,12 +40,11 @@ public class Schedule implements Serializable {
 
     }
 
-    public Schedule(long id, List<EmployeeSkill> activities, LocalDate date, List<Employee> employees, List<Customer> owners, List<Pet> pets) {
+    public Schedule(long id, List<EmployeeSkill> activities, LocalDate date, List<Employee> employees, List<Pet> pets) {
         this.id = id;
         this.activities = activities;
         this.date = date;
         this.employees = employees;
-        this.owners = owners;
         this.pets = pets;
     }
 
@@ -86,13 +80,6 @@ public class Schedule implements Serializable {
         this.employees = employees;
     }
 
-    public List<Customer> getOwners() {
-        return owners;
-    }
-
-    public void setOwners(List<Customer> owners) {
-        this.owners = owners;
-    }
 
     public List<Pet> getPets() {
         return pets;
