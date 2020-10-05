@@ -8,7 +8,7 @@ public interface ScheduleService {
 
     Schedule saveSchedule(Schedule schedule);
 
-    List<Schedule> getAll();
+    List<Schedule> getAllSchedules();
 
     List<Schedule> getSchedulesForPet(long petId);
 
