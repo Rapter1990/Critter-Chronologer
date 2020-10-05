@@ -13,10 +13,12 @@ public class Employee extends User implements Serializable {
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
+    @Column(name = "SKILLS", length = 500)
     private List<EmployeeSkill> skills;
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
+    @Column(name = "DAYS_AVAILABLE", length = 500)
     private List<DayOfWeek> daysAvailable;
 
     public Employee() {
