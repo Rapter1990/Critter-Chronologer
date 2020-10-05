@@ -1,8 +1,5 @@
 package com.udacity.jdnd.course3.critter.service.impl;
 
-import com.udacity.jdnd.course3.critter.exception.ObjectNotFoundException;
-import com.udacity.jdnd.course3.critter.model.Customer;
-import com.udacity.jdnd.course3.critter.model.Pet;
 import com.udacity.jdnd.course3.critter.model.Schedule;
 import com.udacity.jdnd.course3.critter.repository.CustomerRepository;
 import com.udacity.jdnd.course3.critter.repository.EmployeeRepository;
@@ -12,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @Service
@@ -24,6 +19,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     CustomerRepository customerRepository;
     EmployeeRepository employeeRepository;
 
+    @Autowired
     public ScheduleServiceImpl(ScheduleRepository scheduleRepository, CustomerRepository customerRepository, EmployeeRepository employeeRepository) {
         this.scheduleRepository = scheduleRepository;
         this.customerRepository = customerRepository;
