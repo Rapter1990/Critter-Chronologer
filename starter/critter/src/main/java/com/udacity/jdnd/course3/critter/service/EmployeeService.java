@@ -10,6 +10,6 @@ import java.util.Set;
 public interface EmployeeService {
 
     Employee saveEmployee(Employee employee);
-    Employee getEmployeeById(long id);
+    Employee getEmployeeById(long employeeId);
     List<Employee> getAvailableEmployees(Set<EmployeeSkill> skills, DayOfWeek dayOfWeek);
 }
