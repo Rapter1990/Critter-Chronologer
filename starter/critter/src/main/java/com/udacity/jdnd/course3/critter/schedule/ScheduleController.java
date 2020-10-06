@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
+import com.udacity.jdnd.course3.critter.model.Customer;
 import com.udacity.jdnd.course3.critter.model.Employee;
 import com.udacity.jdnd.course3.critter.model.Pet;
 import com.udacity.jdnd.course3.critter.model.Schedule;
@@ -8,6 +9,7 @@ import com.udacity.jdnd.course3.critter.service.impl.EmployeeServiceImpl;
 import com.udacity.jdnd.course3.critter.service.impl.PetServiceImpl;
 import com.udacity.jdnd.course3.critter.service.impl.ScheduleServiceImpl;
 import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -39,7 +42,26 @@ public class ScheduleController {
 
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        throw new UnsupportedOperationException();
+
+        Schedule schedule = getScheduleFromDTO(scheduleDTO);
+
+        List<Long> employeeIds = scheduleDTO.getEmployeeIds();
+        List<Long> petIds = scheduleDTO.getPetIds();
+
+        List<Employee> employees = employeeIds.stream().map(employeeId -> {
+            Employee employee = employeeService.getEmployeeById(employeeId);
+            return employee;
+        }).collect(Collectors.toList());
+
+        List<Pet> pets = petService.getAllPetsByIds(petIds);
+
+        schedule.setEmployees(employees);
+        schedule.setPets(pets);
+
+
+        Schedule savedSchedule = scheduleService.saveSchedule(schedule);
+
+        return getScheduleDTO(savedSchedule);
     }
 
     @GetMapping
@@ -90,5 +112,13 @@ public class ScheduleController {
         scheduleDTO.setId(schedule.getId());
 
         return scheduleDTO;
+    }
+
+    private Schedule getScheduleFromDTO(ScheduleDTO scheduleDTO) {
+        Schedule schedule = new Schedule();
+
+        BeanUtils.copyProperties(scheduleDTO, schedule);
+
+        return schedule;
     }
 }
