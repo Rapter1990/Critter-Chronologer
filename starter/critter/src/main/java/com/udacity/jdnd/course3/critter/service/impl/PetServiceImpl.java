@@ -64,6 +64,7 @@ public class PetServiceImpl implements PetService {
         return pet;
     }
 
+
     @Override
     public List<Pet> getAllPets() {
         return petRepository.findAll();
@@ -84,5 +85,9 @@ public class PetServiceImpl implements PetService {
         }
 
         return pets;
+    }
+
+    public List<Pet> getAllPetsByIds(List<Long> ids){
+        return petRepository.findAllById(ids);
     }
 }
