@@ -1,5 +1,9 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
+import com.udacity.jdnd.course3.critter.service.impl.CustomerServiceImpl;
+import com.udacity.jdnd.course3.critter.service.impl.EmployeeServiceImpl;
+import com.udacity.jdnd.course3.critter.service.impl.PetServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
+
+    CustomerServiceImpl customerService;
+    EmployeeServiceImpl employeeService;
+    PetServiceImpl petService;
+
+    @Autowired
+    public ScheduleController(CustomerServiceImpl customerService, EmployeeServiceImpl employeeService, PetServiceImpl petService) {
+        this.customerService = customerService;
+        this.employeeService = employeeService;
+        this.petService = petService;
+    }
 
     @PostMapping
     public ScheduleDTO createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
