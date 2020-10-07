@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -103,7 +100,16 @@ public class ScheduleController {
 
     private ScheduleDTO getScheduleDTO(Schedule schedule) {
         ScheduleDTO scheduleDTO = new ScheduleDTO();
-        scheduleDTO.setActivities(new HashSet<EmployeeSkill>(schedule.getActivities()));
+
+        Set<EmployeeSkill> skills;
+
+        if(schedule.getActivities() != null){
+            skills = new HashSet<EmployeeSkill>(schedule.getActivities());
+        }else{
+            skills = new HashSet<EmployeeSkill>();
+        }
+
+        scheduleDTO.setActivities(skills);
         scheduleDTO.setDate(schedule.getDate());
         List<Long> employeeIds = schedule.getEmployees().stream().map(Employee::getId).collect(Collectors.toList());
         scheduleDTO.setEmployeeIds(employeeIds);
