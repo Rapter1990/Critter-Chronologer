@@ -82,8 +82,20 @@ public class UserController {
         Set<DayOfWeek> daysAvailable = employeeDTO.getDaysAvailable();
         long id = employeeDTO.getId();
 
-        List<EmployeeSkill> skillsList = new ArrayList<EmployeeSkill>(skills);
-        List<DayOfWeek> daysAvailableList = new ArrayList<DayOfWeek>(daysAvailable);
+        List<EmployeeSkill> skillsList;
+        List<DayOfWeek> daysAvailableList;
+
+        if (skills != null) {
+            skillsList = new ArrayList<>(skills);
+        } else {
+            skillsList = new ArrayList<>();
+        }
+
+        if (daysAvailable != null) {
+            daysAvailableList = new ArrayList<>(daysAvailable);
+        } else {
+            daysAvailableList = new ArrayList<>();
+        }
 
         employee.setName(name);
         employee.setId(id);
