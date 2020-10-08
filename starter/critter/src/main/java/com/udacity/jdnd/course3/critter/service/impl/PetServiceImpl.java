@@ -38,7 +38,11 @@ public class PetServiceImpl implements PetService {
             Optional<Customer> customerOptional = customerRepository.findById(customerId);
             if (customerOptional.isPresent()) {
                 Customer customer = customerOptional.get();
-                customer.getPets().add(pet);
+
+                if(customer.getPets() != null) {
+                    customer.getPets().add(pet);
+                }
+
                 customerRepository.save(customer);
             }
         } else {

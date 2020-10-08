@@ -78,6 +78,7 @@ public class PetController {
     public List<PetDTO> getPetsByOwner(@PathVariable long ownerId) {
 
         List<Pet> pets = petService.getAllByOwnerId(ownerId);
+
         return pets.stream().map(this::getPetDTO).collect(Collectors.toList());
     }
 

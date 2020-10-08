@@ -138,7 +138,14 @@ public class UserController {
         customerDTO.setName(customer.getName());
         customerDTO.setPhoneNumber(customer.getPhoneNumber());
         customerDTO.setNotes(customer.getNotes());
-        List<Long> petIds = customer.getPets().stream().map(Pet::getId).collect(Collectors.toList());
+
+        List<Long> petIds;
+
+        if(customer.getPets() !=null){
+            petIds = customer.getPets().stream().map(Pet::getId).collect(Collectors.toList());
+        } else {
+            petIds = new ArrayList<>();
+        }
 
         customerDTO.setPetIds(petIds);
 
