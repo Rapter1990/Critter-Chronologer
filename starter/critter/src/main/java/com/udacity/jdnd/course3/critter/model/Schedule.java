@@ -5,6 +5,7 @@ import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Schedule implements Serializable {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     @Column(name = "ACTIVITIES", length = 500)
-    private List<EmployeeSkill> activities;
+    private List<EmployeeSkill> activities = new ArrayList<>();
 
     @Column(name="SCHEDULE_DATE")
     private LocalDate date;
@@ -28,12 +29,12 @@ public class Schedule implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "SCHEDULE_EMPLOYEE", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
             inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
-    private List<Employee> employees;
+    private List<Employee> employees = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "SCHEDULE_PET", joinColumns = @JoinColumn(name = "SCHEDULE_ID"),
             inverseJoinColumns = @JoinColumn(name = "PET_ID"))
-    private List<Pet> pets;
+    private List<Pet> pets = new ArrayList<>();
 
     public Schedule() {
 

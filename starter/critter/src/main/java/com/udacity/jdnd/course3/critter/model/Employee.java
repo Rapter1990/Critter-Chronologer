@@ -6,6 +6,7 @@ import org.hibernate.annotations.Nationalized;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,12 +26,12 @@ public class Employee implements Serializable {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     @Column(name = "SKILLS", length = 500)
-    private List<EmployeeSkill> skills;
+    private List<EmployeeSkill> skills = new ArrayList<>();
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
     @Column(name = "DAYS_AVAILABLE", length = 500)
-    private List<DayOfWeek> daysAvailable;
+    private List<DayOfWeek> daysAvailable = new ArrayList<>();
 
     public Employee() {
 

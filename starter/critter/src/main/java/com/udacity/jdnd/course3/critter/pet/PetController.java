@@ -54,6 +54,9 @@ public class PetController {
 
         Pet saved = petService.savePet(pet);
 
+        customer.getPets().add(saved);
+        customerService.saveCustomer(customer);
+
         petDTO.setId(saved.getId());
         return petDTO;
     }
