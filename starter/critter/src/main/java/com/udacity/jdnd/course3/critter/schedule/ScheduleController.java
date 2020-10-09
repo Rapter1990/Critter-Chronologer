@@ -123,6 +123,16 @@ public class ScheduleController {
     private Schedule getScheduleFromDTO(ScheduleDTO scheduleDTO) {
         Schedule schedule = new Schedule();
 
+        Set<EmployeeSkill> skills;
+
+        if(schedule.getActivities() != null){
+            skills = new HashSet<EmployeeSkill>(schedule.getActivities());
+        }else{
+            skills = new HashSet<EmployeeSkill>();
+        }
+
+        scheduleDTO.setActivities(skills);
+
         BeanUtils.copyProperties(scheduleDTO, schedule);
 
         return schedule;
