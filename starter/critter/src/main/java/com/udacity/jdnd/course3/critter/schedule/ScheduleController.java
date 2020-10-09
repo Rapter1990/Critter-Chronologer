@@ -124,7 +124,7 @@ public class ScheduleController {
         Schedule schedule = new Schedule();
 
 
-        scheduleDTO.setActivities(skills);
+
 
         BeanUtils.copyProperties(scheduleDTO, schedule);
 
