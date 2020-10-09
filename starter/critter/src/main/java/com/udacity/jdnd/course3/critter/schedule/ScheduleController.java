@@ -123,9 +123,6 @@ public class ScheduleController {
     private Schedule getScheduleFromDTO(ScheduleDTO scheduleDTO) {
         Schedule schedule = new Schedule();
 
-
-
-
         BeanUtils.copyProperties(scheduleDTO, schedule);
 
         return schedule;

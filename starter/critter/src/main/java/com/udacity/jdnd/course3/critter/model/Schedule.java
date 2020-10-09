@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="SCHEDULE",catalog ="critter")
@@ -21,7 +23,7 @@ public class Schedule implements Serializable {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     @Column(name = "ACTIVITIES", length = 500)
-    private List<EmployeeSkill> activities = new ArrayList<>();
+    private Set<EmployeeSkill> activities = new HashSet<>();
 
     @Column(name="SCHEDULE_DATE")
     private LocalDate date;
@@ -40,7 +42,7 @@ public class Schedule implements Serializable {
 
     }
 
-    public Schedule(long id, List<EmployeeSkill> activities, LocalDate date, List<Employee> employees, List<Pet> pets) {
+    public Schedule(long id, Set<EmployeeSkill> activities, LocalDate date, List<Employee> employees, List<Pet> pets) {
         this.id = id;
         this.activities = activities;
         this.date = date;
@@ -56,11 +58,11 @@ public class Schedule implements Serializable {
         this.id = id;
     }
 
-    public List<EmployeeSkill> getActivities() {
+    public Set<EmployeeSkill> getActivities() {
         return activities;
     }
 
-    public void setActivities(List<EmployeeSkill> activities) {
+    public void setActivities(Set<EmployeeSkill> activities) {
         this.activities = activities;
     }
 
